@@ -1,4 +1,4 @@
-Python code for the kaggle competition : Acquire valued shoppers challenge.
+Python code for the kaggle competition : Acquire valued shoppers challenge -> http://www.kaggle.com/c/acquire-valued-shoppers-challenge
 
 The data was loaded in a MySQL database.  For example, the main table which contains the transaction history of all custummers over a 1 year period had the following schema :
 
@@ -30,7 +30,10 @@ date_ date NOT NULL,
 
 
 
-ALTER TABLE transactions ADD PRIMARY INDEX (id);
+ALTER TABLE transactions ADD INDEX (date_);
+ALTER TABLE transactions ADD INDEX (category);
+ALTER TABLE transactions ADD INDEX (company);
+ALTER TABLE transactions ADD INDEX (brand);
 
 LOAD DATA LOCAL INFILE 'C:/Users/Mathieu/Documents/shopper/transactions.csv' 
 
