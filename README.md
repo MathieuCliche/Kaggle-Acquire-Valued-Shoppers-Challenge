@@ -37,7 +37,7 @@ ALTER TABLE transactions ADD INDEX (brand);
 
 LOAD DATA LOCAL INFILE 'C:/Users/Mathieu/Documents/shopper/transactions.csv'   
 
-INTO TABLE transactions  
+INTO TABLE transactions      
 FIELDS TERMINATED BY ','   
 
 LINES TERMINATED BY '\n'   
