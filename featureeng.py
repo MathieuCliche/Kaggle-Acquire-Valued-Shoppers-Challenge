@@ -12,8 +12,8 @@ db = MySQLdb.connect(host="localhost", # your host, usually localhost
 
 cur = db.cursor()
 
-sourcetrans='transcat2 limit 0,10' # reduced transactions
-sourcetranslong='transactions limit 0,10' #full transactions
+sourcetrans='transcat2' # reduced transactions
+sourcetranslong='transactions' #full transactions
 
 if test:
     source='testHistory'
@@ -666,8 +666,6 @@ print datetime.now() - start
 small=1e-8
 size=len(brand)
 
-
-
 purchtotpurch=np.reshape(purchtot[0::,0],(size,1))
 purchtotpurch10=np.reshape(purchtot10[0::,0],(size,1))
 purchtotpurch30=np.reshape(purchtot30[0::,0],(size,1))
@@ -700,7 +698,6 @@ fbrand120=np.hstack(((brandpurch120>0).astype(float),brand120,brand120/(brandtot
 fbrand180=np.hstack(((brandpurch180>0).astype(float),brand180,brand180/(brandtot+small),brand180/(purchtot_brand180+small),brand180/(purchtot_brand+small)))
 fbrandtot=np.hstack((fbrand,fbrand10,fbrand30,fbrand60,fbrand90,fbrand120,fbrand180))
 
-
 comppurch=np.reshape(comp[0::,0],(size,1))
 comppurch10=np.reshape(comp10[0::,0],(size,1))
 comppurch30=np.reshape(comp30[0::,0],(size,1))
@@ -717,7 +714,6 @@ fcomp120=np.hstack(((comppurch120>0).astype(float),comp120,comp120/(comptot+smal
 fcomp180=np.hstack(((comppurch180>0).astype(float),comp180,comp180/(comptot+small),comp180/(purchtot180+small),comp180/(purchtot+small)))
 fcomptot=np.hstack((fcomp,fcomp10,fcomp30,fcomp60,fcomp90,fcomp120,fcomp180))
 
-
 catpurch=np.reshape(cat[0::,0],(size,1))
 catpurch10=np.reshape(cat10[0::,0],(size,1))
 catpurch30=np.reshape(cat30[0::,0],(size,1))
@@ -733,7 +729,6 @@ fcat90=np.hstack(((catpurch90>0).astype(float),cat90,cat90/(cattot+small),cat90/
 fcat120=np.hstack(((catpurch120>0).astype(float),cat120,cat120/(cattot+small),cat120/(purchtot120+small),cat120/(purchtot+small)))
 fcat180=np.hstack(((catpurch180>0).astype(float),cat180,cat180/(cattot+small),cat180/(purchtot180+small),cat180/(purchtot+small)))
 fcattot=np.hstack((fcat,fcat10,fcat30,fcat60,fcat90,fcat120,fcat180))
-
 
 features=np.hstack((fbrandtot,fcomptot,fcattot,fpurchtot,offerfea,weekdate,monthdate,offerdate))
 

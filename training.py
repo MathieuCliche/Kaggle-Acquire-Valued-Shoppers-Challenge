@@ -17,7 +17,6 @@ numberte=len(featurete)
 
 ids=np.load('dataid.npy')
 
-
 ## SORT BY DATE
 orderdate=featuretr[0::,-1].argsort()
 trainout=trainout[orderdate]
