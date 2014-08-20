@@ -5,44 +5,44 @@ The data was loaded in a MySQL database.  For example, the main table which cont
 CREATE TABLE transactions
 (
 
-  id      char(50)  NOT NULL ,
-
-  chain_    int  NOT NULL ,
-
-  dept int NOT NULL,
- 
- category int NOT NULL,
- 
- company char(50) NOT NULL,
- 
- brand char(10) NOT NULL,
+id char(50)  NOT NULL,
   
+chain_ int  NOT NULL ,
+ 
+dept int NOT NULL,
+   
+category int NOT NULL,
+  
+company char(50) NOT NULL,
+   
+brand char(10) NOT NULL,
+   
 date_ date NOT NULL,
+   
+productsize int NOT NULL,  
  
- productsize int NOT NULL,
+productmeasure char(10) NOT NULL,  
  
- productmeasure char(10) NOT NULL,
- 
- purchasequantity int NOT NULL,
- 
- purchaseamount float NOT NULL
+purchasequantity int NOT NULL,
+   
+purchaseamount float NOT NULL
 );
 
-
+  
 
 ALTER TABLE transactions ADD INDEX (date_);  
 ALTER TABLE transactions ADD INDEX (category);  
 ALTER TABLE transactions ADD INDEX (company);  
 ALTER TABLE transactions ADD INDEX (brand);  
 
-LOAD DATA LOCAL INFILE 'C:/Users/Mathieu/Documents/shopper/transactions.csv' 
+LOAD DATA LOCAL INFILE 'C:/Users/Mathieu/Documents/shopper/transactions.csv'   
 
-INTO TABLE transactions
-FIELDS TERMINATED BY ',' 
+INTO TABLE transactions  
+FIELDS TERMINATED BY ','   
 
-LINES TERMINATED BY '\n' 
+LINES TERMINATED BY '\n'   
 
-IGNORE 1 LINES;
+IGNORE 1 LINES;  
 
 Then features were then generated with the featureeng.py python code.  All features were generated via SQL queries using the python librairy MySQLdb which can access the MySQL database.  The features were then saved in a numpy array file.
 
