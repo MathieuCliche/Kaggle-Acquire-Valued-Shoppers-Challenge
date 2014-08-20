@@ -30,10 +30,10 @@ date_ date NOT NULL,
 
 
 
-ALTER TABLE transactions ADD INDEX (date_);
-ALTER TABLE transactions ADD INDEX (category);
-ALTER TABLE transactions ADD INDEX (company);
-ALTER TABLE transactions ADD INDEX (brand);
+ALTER TABLE transactions ADD INDEX (date_);  
+ALTER TABLE transactions ADD INDEX (category);  
+ALTER TABLE transactions ADD INDEX (company);  
+ALTER TABLE transactions ADD INDEX (brand);  
 
 LOAD DATA LOCAL INFILE 'C:/Users/Mathieu/Documents/shopper/transactions.csv' 
 
