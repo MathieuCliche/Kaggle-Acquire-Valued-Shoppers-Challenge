@@ -3,7 +3,7 @@ The purpose of this script is to train a classifier using the features generated
 We first pickle out the feature set for the train data and the test data.  Then we sort the training
 data by the date the offer was made.  Then we do feature scaling and splitting into train and cross-validation
 sets.  We generate weights such that customers with multiple repeat trips are weighted more heavily than
-customers with fewer repeat trips.  We then train a random-forest classifier, cross-valide with ROC AUC metric
+customers with fewer repeat trips.  We then train a random-forest classifier, cross-valide with ROC AUC score
 and produce and ouput that we can submit to kaggle.
 """
 
