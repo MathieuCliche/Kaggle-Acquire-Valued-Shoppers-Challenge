@@ -1,5 +1,17 @@
+"""
+This python script is used to generate the features which will later be used to train the classifier.
+Example of features :
+-  Feature describing the offer (offervalue, date the offer was made, etc.)
+-  Features describing the customer (how much (money, number of trips, quantity) was spent in total by the customer).
+-  Feature describing the relation between the customer and the offer (amount of money spend, number of times purchased,
+quantity purchased in the same (company, category, brand) as their respective offer for (10, 30, 60, 90, 120, 180 , 365)
+days after the offer was made.  
+
+All features are obtained by quering the database via the MySQLdb librairy.  The matrix representing the features is
+save in a npy file at the end.
+"""
+
 import MySQLdb
-import pickle
 import numpy as np
 from datetime import datetime, date
 
@@ -7,13 +19,15 @@ test=1 #Extract feature for train (test=0) or test (test=1).
 
 db = MySQLdb.connect(host="localhost", # your host, usually localhost
                      user="root", # your username
-                     passwd="password",
+                     passwd="password", #your password
                       db="shopper")
 
 cur = db.cursor()
 
 sourcetrans='transcat2' # reduced transactions
+#(only contains relevant companies and categories, used for queries which don't need the entire customer history)
 sourcetranslong='transactions' #full transactions
+#(this one contains the full transaction history, used for queries for features that describes the customer)
 
 if test:
     source='testHistory'
