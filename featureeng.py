@@ -36,9 +36,7 @@ if test:
     cur.execute("select id\
                 from "+source+\
                 " order by CAST(id AS UNSIGNED)")
-    ids=[]
-    for row in cur.fetchall() :
-        ids.append(row)
+    ids=cur.fetchall()
     ids=np.array(ids)
     np.save("dataid",ids)
     
@@ -50,9 +48,7 @@ else:
     cur.execute("select repeattrips\
                 from "+source+\
                 " order by CAST(id AS UNSIGNED)")
-    trainout=[]
-    for row in cur.fetchall() :
-        trainout.append(row)
+    trainout=cur.fetchall()
     trainout=np.array(trainout)
     
     string='data'+'train23'
@@ -63,7 +59,6 @@ start = datetime.now()
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, REPEAT TRIP, QUANTITY FROM THE SAME COMPANY AS THE OFFER OF THE CUSTOMER#
-comp=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch,sum(purchasequantity) sumqte \
@@ -73,14 +68,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    comp.append(row)
+comp=cur.fetchall()
 comp=np.nan_to_num(np.array(comp,dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT TRIP FROM THE SAME COMPANY PAST 10 DAYS#
-comp10=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch,sum(purchasequantity) sumqte \
@@ -90,14 +83,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    comp10.append(row)
+comp10=cur.fetchall()
 comp10=np.nan_to_num(np.array(comp10,dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT TRIP FROM THE SAME COMPANY PAST 30 DAYS#
-comp30=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch,sum(purchasequantity) sumqte \
@@ -107,14 +98,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    comp30.append(row)
+comp30=cur.fetchall()
 comp30=np.nan_to_num(np.array(comp30,dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT TRIP FROM THE SAME COMPANY PAST 60 DAYS#
-comp60=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch,sum(purchasequantity) sumqte \
@@ -124,14 +113,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    comp60.append(row)
+comp60=cur.fetchall()
 comp60=np.nan_to_num(np.array(comp60,dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT TRIP FROM THE SAME COMPANY PAST 90 DAYS#
-comp90=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch,sum(purchasequantity) sumqte \
@@ -141,14 +128,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    comp90.append(row)
+comp90=cur.fetchall()
 comp90=np.nan_to_num(np.array(comp90,dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT TRIP FROM THE SAME COMPANY PAST 120 DAYS#
-comp120=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch,sum(purchasequantity) sumqte \
@@ -158,15 +143,13 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    comp120.append(row)
+comp120=cur.fetchall()
 comp120=np.nan_to_num(np.array(comp120,dtype=np.float))
 
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT TRIP FROM THE SAME COMPANY PAST 180 DAYS#
-comp180=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch,sum(purchasequantity) sumqte \
@@ -176,14 +159,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    comp180.append(row)
+comp180=cur.fetchall()
 comp180=np.nan_to_num(np.array(comp180,dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT FROM THE SAME BRAND #
-brand=[]
 cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte, sum(productsize) sumsize \
@@ -193,14 +174,12 @@ cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    brand.append(row)
+brand=cur.fetchall()
 brand=np.nan_to_num(np.array(brand, dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT FROM THE SAME BRAND 7 DAYS#
-brand10=[]
 cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte, sum(productsize) sumsize \
@@ -210,14 +189,12 @@ cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    brand10.append(row)
+brand10=cur.fetchall()
 brand10=np.nan_to_num(np.array(brand10, dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT FROM THE SAME BRAND 30 DAYS#
-brand30=[]
 cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte, sum(productsize) sumsize \
@@ -227,14 +204,12 @@ cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    brand30.append(row)
+brand30=cur.fetchall()
 brand30=np.nan_to_num(np.array(brand30, dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT FROM THE SAME BRAND 60 DAYS#
-brand60=[]
 cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte, sum(productsize) sumsize \
@@ -244,14 +219,12 @@ cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    brand60.append(row)
+brand60=cur.fetchall()
 brand60=np.nan_to_num(np.array(brand60, dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT FROM THE SAME BRAND 60 DAYS#
-brand90=[]
 cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte, sum(productsize) sumsize \
@@ -261,14 +234,12 @@ cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    brand90.append(row)
+brand90=cur.fetchall()
 brand90=np.nan_to_num(np.array(brand90, dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT FROM THE SAME BRAND 120 DAYS#
-brand120=[]
 cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte, sum(productsize) sumsize \
@@ -278,15 +249,13 @@ cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    brand120.append(row)
+brand120=cur.fetchall()
 brand120=np.nan_to_num(np.array(brand120, dtype=np.float))
 
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT FROM THE SAME BRAND 120 DAYS#
-brand180=[]
 cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte, sum(productsize) sumsize \
@@ -296,14 +265,12 @@ cur.execute("select sumpurch, countpurch, sumqte, sumsize\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    brand180.append(row)
+brand180=cur.fetchall()
 brand180=np.nan_to_num(np.array(brand180, dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT  FROM THE SAME category #
-cat=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte \
@@ -313,14 +280,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    cat.append(row)
+cat=cur.fetchall()
 cat=np.nan_to_num(np.array(cat, dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT  FROM THE SAME category  7 DAYS#
-cat10=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte \
@@ -330,14 +295,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    cat10.append(row)
+cat10=cur.fetchall()
 cat10=np.nan_to_num(np.array(cat10, dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT  FROM THE SAME category  30 DAYS#
-cat30=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte \
@@ -347,15 +310,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    cat30.append(row)
+cat30=cur.fetchall()
 cat30=np.nan_to_num(np.array(cat30, dtype=np.float))
 
 print datetime.now() - start
 
-
 #### PURCHASE AMOUNT, QUANTITY, REPEAT  FROM THE SAME category  60 DAYS#
-cat60=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte \
@@ -365,14 +325,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    cat60.append(row)
+cat60=cur.fetchall()
 cat60=np.nan_to_num(np.array(cat60, dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT  FROM THE SAME category  90 DAYS#
-cat90=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte \
@@ -382,14 +340,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    cat90.append(row)
+cat90=cur.fetchall()
 cat90=np.nan_to_num(np.array(cat90, dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT  FROM THE SAME category  120 DAYS#
-cat120=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte \
@@ -399,14 +355,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    cat120.append(row)
+cat120=cur.fetchall()
 cat120=np.nan_to_num(np.array(cat120, dtype=np.float))
 
 print datetime.now() - start
 
 #### PURCHASE AMOUNT, QUANTITY, REPEAT  FROM THE SAME category  180 DAYS#
-cat180=[]
 cur.execute("select sumpurch, countpurch, sumqte\
             from " + source + " left outer join (\
             select " + source + ".id, sum(purchaseamount) sumpurch, count(purchaseamount) countpurch, sum(purchasequantity) sumqte \
@@ -416,15 +370,12 @@ cur.execute("select sumpurch, countpurch, sumqte\
             ) as bigtable on " + source + ".id=bigtable.id \
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    cat180.append(row)
+cat180=cur.fetchall()
 cat180=np.nan_to_num(np.array(cat180, dtype=np.float))
 
 print datetime.now() - start
 
-
 #### TOTAL MONEY IN CHAIN #### AND QTE AND TRANSACTIONS  ***********************
-chaintot=[]
 cur.execute("select sumcomp, countpurch, sumqte\
             from "+source+" left outer join (\
             select sum(tcat.purchaseamount) sumcomp, count(tcat.purchaseamount) countpurch, sum(tcat.purchasequantity) sumqte, chain_\
@@ -432,14 +383,12 @@ cur.execute("select sumcomp, countpurch, sumqte\
             group by tcat.chain_) as sctable on "+source+".chain_=sctable.chain_\
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    chaintot.append(row)
+chaintot=cur.fetchall()
 chaintot=np.nan_to_num(np.array(chaintot, dtype=np.float))
 
 print datetime.now() - start
 
 #### TOTAL MONEY IN COMPANY ####
-comptot=[]
 cur.execute("select sumcomp, countpurch, sumqte\
             from "+source+" left outer join (\
             select offers.offer, sumcomp, countpurch, sumqte\
@@ -449,14 +398,12 @@ cur.execute("select sumcomp, countpurch, sumqte\
             group by tcat.company) as sctable on sctable.company=offers.company) as sotable on "+source+".offer=sotable.offer\
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    comptot.append(row)
+comptot=cur.fetchall()
 comptot=np.nan_to_num(np.array(comptot, dtype=np.float))
 
 print datetime.now() - start
 
 #### TOTAL MONEY IN BRAND ####
-brandtot=[]
 cur.execute("select sumbrand, countpurch, sumqte, sumsize \
             from "+source+" left outer join (\
             select offers.offer, sumbrand, countpurch, sumqte, sumsize\
@@ -466,14 +413,12 @@ cur.execute("select sumbrand, countpurch, sumqte, sumsize \
             group by tcat.brand) as sctable on sctable.brand=offers.brand) as sotable on "+source+".offer=sotable.offer\
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    brandtot.append(row)
+brandtot=cur.fetchall()
 brandtot=np.nan_to_num(np.array(brandtot, dtype=np.float))
 
 print datetime.now() - start
 
 #### TOTAL MONEY IN CATEGORY ####
-cattot=[]
 cur.execute("select sumcat, countpurch, sumqte\
             from "+source+" left outer join (\
             select offers.offer, sumcat, countpurch, sumqte\
@@ -483,143 +428,123 @@ cur.execute("select sumcat, countpurch, sumqte\
             group by tcat.category) as sctable on sctable.category=offers.category) as sotable on "+source+".offer=sotable.offer\
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    cattot.append(row)
+cattot=cur.fetchall()
 cattot=np.nan_to_num(np.array(cattot, dtype=np.float))
 
 print datetime.now() - start
 
 
 #### TOTAL PURCHASE AMOUNT FROM USER ########   
-purchtot=[]
+
 cur.execute("select sum(tcat.purchaseamount), count(tcat.purchaseamount), sum(tcat.purchasequantity), sum(tcat.productsize)\
             from "+source+" left outer join (select * from "+sourcetranslong+") as tcat on  "+source+".id=tcat.id\
             group by "+source+".id\
             order by CAST("+source+".id AS UNSIGNED);")
 
-for row in cur.fetchall():
-    purchtot.append(row)
+purchtot=cur.fetchall()
 purchtot=np.nan_to_num(np.array(purchtot, dtype=np.float))
 purchtot_brand=purchtot
-purchtot=np.hstack((purchtot[0::,0:3],purchtot[0::,4:7]))
+purchtot=purchtot[0::,0:3]
 
 print datetime.now() - start
 
 #### TOTAL PURCHASE AMOUNT FROM USER PAST 10 DAYS ########   ***********************
-purchtot10=[]
 cur.execute("select sum(tcat.purchaseamount), count(tcat.purchaseamount), sum(tcat.purchasequantity), sum(tcat.productsize)\
             from "+source+" left outer join (select * from "+sourcetranslong+") as tcat on  "+source+".id=tcat.id and ((date_)+INTERVAL 10 DAY)>(offerdate)\
             group by "+source+".id\
             order by CAST("+source+".id AS UNSIGNED);")
 
-for row in cur.fetchall():
-    purchtot10.append(row)
+purchtot10=cur.fetchall()
 purchtot10=np.nan_to_num(np.array(purchtot10, dtype=np.float))
 purchtot_brand10=purchtot10
-purchtot10=np.hstack((purchtot10[0::,0:3],purchtot10[0::,4:7]))
+purchtot10=purchtot10[0::,0:3]
 
 print datetime.now() - start
 
 #### TOTAL PURCHASE AMOUNT FROM USER PAST 30 DAYS ########   ***********************
-purchtot30=[]
 cur.execute("select sum(tcat.purchaseamount), count(tcat.purchaseamount), sum(tcat.purchasequantity), sum(tcat.productsize)\
            from "+source+" left outer join (select * from "+sourcetranslong+") as tcat on  "+source+".id=tcat.id and ((date_)+INTERVAL 30 DAY)>(offerdate)\
             group by "+source+".id\
             order by CAST("+source+".id AS UNSIGNED);")
 
-for row in cur.fetchall():
-    purchtot30.append(row)
+purchtot30=cur.fetchall()
 purchtot30=np.nan_to_num(np.array(purchtot30, dtype=np.float))
 purchtot_brand30=purchtot30
-purchtot30=np.hstack((purchtot30[0::,0:3],purchtot30[0::,4:7]))
+purchtot30=purchtot30[0::,0:3]
 
 print datetime.now() - start
 
 #### TOTAL PURCHASE AMOUNT FROM USER PAST 60 DAYS ########   ***********************
-purchtot60=[]
 cur.execute("select sum(tcat.purchaseamount), count(tcat.purchaseamount), sum(tcat.purchasequantity), sum(tcat.productsize)\
             from "+source+" left outer join (select * from "+sourcetranslong+") as tcat on  "+source+".id=tcat.id and ((date_)+INTERVAL 60 DAY)>(offerdate)\
             group by "+source+".id\
             order by CAST("+source+".id AS UNSIGNED);")
 
-for row in cur.fetchall():
-    purchtot60.append(row)
+purchtot60=cur.fetchall()
 purchtot60=np.nan_to_num(np.array(purchtot60, dtype=np.float))
 purchtot_brand60=purchtot60
-purchtot60=np.hstack((purchtot60[0::,0:3],purchtot60[0::,4:7]))
+purchtot60=purchtot60[0::,0:3]
 
 print datetime.now() - start
 
-
 #### TOTAL PURCHASE AMOUNT FROM USER PAST 90 DAYS ########   ***********************
-purchtot90=[]
 cur.execute("select sum(tcat.purchaseamount), count(tcat.purchaseamount), sum(tcat.purchasequantity), sum(tcat.productsize)\
             from "+source+" left outer join (select * from "+sourcetranslong+") as tcat on  "+source+".id=tcat.id and ((date_)+INTERVAL 90 DAY)>(offerdate)\
             group by "+source+".id\
             order by CAST("+source+".id AS UNSIGNED);")
 
 
-for row in cur.fetchall():
-    purchtot90.append(row)
+purchtot90=cur.fetchall()
 purchtot90=np.nan_to_num(np.array(purchtot90, dtype=np.float))
 purchtot_brand90=purchtot90
-purchtot90=np.hstack((purchtot90[0::,0:3],purchtot90[0::,4:7]))
-
+purchtot90=purchtot90[0::,0:3]
 
 print datetime.now() - start
 
 #### TOTAL PURCHASE AMOUNT FROM USER PAST 120 DAYS ########   ***********************
-purchtot120=[]
 cur.execute("select sum(tcat.purchaseamount), count(tcat.purchaseamount), sum(tcat.purchasequantity), sum(tcat.productsize)\
             from "+source+" left outer join (select * from "+sourcetranslong+") as tcat on  "+source+".id=tcat.id and ((date_)+INTERVAL 120 DAY)>(offerdate)\
             group by "+source+".id\
             order by CAST("+source+".id AS UNSIGNED);")
 
-for row in cur.fetchall():
-    purchtot120.append(row)
+purchtot120=cur.fetchall()
 purchtot120=np.nan_to_num(np.array(purchtot120, dtype=np.float))
 purchtot_brand120=purchtot120
-purchtot120=np.hstack((purchtot120[0::,0:3],purchtot120[0::,4:7]))
+purchtot120=purchtot120[0::,0:3]
 
 print datetime.now() - start
 
 #### TOTAL PURCHASE AMOUNT FROM USER PAST 180 DAYS ########   ***********************
-purchtot180=[]
 cur.execute("select sum(tcat.purchaseamount), count(tcat.purchaseamount), sum(tcat.purchasequantity), sum(tcat.productsize)\
             from "+source+" left outer join (select * from "+sourcetranslong+") as tcat on  "+source+".id=tcat.id and ((date_)+INTERVAL 180 DAY)>(offerdate)\
             group by "+source+".id\
             order by CAST("+source+".id AS UNSIGNED);")
 
-for row in cur.fetchall():
-    purchtot180.append(row)
+purchtot180=cur.fetchall()
 purchtot180=np.nan_to_num(np.array(purchtot180, dtype=np.float))
 purchtot_brand180=purchtot180
-purchtot180=np.hstack((purchtot180[0::,0:3],purchtot180[0::,4:7]))
+purchtot180=purchtot180[0::,0:3]
 
 print datetime.now() - start
 
 ########################################################################################
 
 ##### OFFER FEATURES ###
-offerfea=[]
 cur.execute("select offervalue\
             from " + source + ", offers\
             where " + source + ".offer=offers.offer\
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    offerfea.append(row)
+offerfea=cur.fetchall()
 offerfea=np.nan_to_num(np.array(offerfea, dtype=np.float))
 
 print datetime.now() - start
 
-offermarket=[]
 cur.execute("select market\
             from " + source + "\
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    offermarket.append(row)
+offermarket=cur.fetchall()
 offermarket=np.nan_to_num(np.array(offermarket, dtype=np.float))
 offermarktype=np.unique(offermarket)
 
@@ -629,13 +554,11 @@ for j in range(len(offermarktype)):
 print datetime.now() - start
 
 ##### RELATIVE DATE IN THE WEEK THE OFFER WAS MADE ###
-weekdate=[]
 cur.execute("select dayofweek((offerdate))\
             from " + source + "\
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    weekdate.append(row)
+weekdate=cur.fetchall()
 weekdate=np.nan_to_num(np.array(weekdate, dtype=np.float))
 weekdateoriginal=weekdate
 weekdate=weekdateoriginal==1
@@ -648,13 +571,11 @@ weekdate=weekdate.astype(int)
 weekdate=np.hstack((weekdate,weekendornot))
 
 ##### RELATIVE DATE IN THE MONTH THE OFFER WAS MADE ###
-monthdate=[]
 cur.execute("select dayofmonth((offerdate))\
             from " + source + "\
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    monthdate.append(row)
+monthdate=cur.fetchall()
 monthdate=np.nan_to_num(np.array(monthdate, dtype=np.float))
 firstweek=(monthdate<=7).astype(int)
 secondweek=(np.logical_and(monthdate<=14,monthdate>7)).astype(int)
@@ -665,13 +586,11 @@ monthdate=np.hstack((firstweek,secondweek,thirdweek,fourthweek,fifthweek))
 
 
 ##### RELATIVE DATE THE OFFER WAS MADE ###
-offerdate=[]
 cur.execute("select datediff((offerdate),(select min(offerdate) from trainHistory))\
             from " + source + "\
             order by CAST(" + source + ".id AS UNSIGNED)")
 
-for row in cur.fetchall():
-    offerdate.append(row)
+offerdate=cur.fetchall()
 offerdate=np.nan_to_num(np.array(offerdate, dtype=np.float))
 
 
