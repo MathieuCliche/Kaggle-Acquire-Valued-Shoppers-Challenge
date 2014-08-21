@@ -680,6 +680,8 @@ print datetime.now() - start
 small=1e-8
 size=len(brand)
 
+#FEATURE PACKING
+
 purchtotpurch=np.reshape(purchtot[0::,0],(size,1))
 purchtotpurch10=np.reshape(purchtot10[0::,0],(size,1))
 purchtotpurch30=np.reshape(purchtot30[0::,0],(size,1))
