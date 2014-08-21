@@ -1,4 +1,8 @@
-Python code for the kaggle competition : Acquire valued shoppers challenge -> http://www.kaggle.com/c/acquire-valued-shoppers-challenge
+Python code for the kaggle competition : Acquire valued shoppers challenge
+--------------------------------------------------------------------------
+
+[http://www.kaggle.com/c/acquire-valued-shoppers-challenge] http://www.kaggle.com/c/acquire-valued-shoppers-challenge
+
 
 The data was loaded in a MySQL database.  For example, the main table which contains the transaction history of all customers over a 1 year period had the following schema :
 
