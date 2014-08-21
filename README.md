@@ -1,7 +1,7 @@
 Python code for the kaggle competition : Acquire valued shoppers challenge
 --------------------------------------------------------------------------
 
-[http://www.kaggle.com/c/acquire-valued-shoppers-challenge] http://www.kaggle.com/c/acquire-valued-shoppers-challenge
+http://www.kaggle.com/c/acquire-valued-shoppers-challenge
 
 
 The data was loaded in a MySQL database.  For example, the main table which contains the transaction history of all customers over a 1 year period had the following schema :
@@ -48,6 +48,6 @@ LINES TERMINATED BY '\n'
 
 IGNORE 1 LINES;  
 
-Then features were generated with the featureeng.py python script.  All features were generated via SQL queries using the python librairy MySQLdb which can access the MySQL database.  The features were then saved in a numpy array file.
+Then features were generated with the **featureeng.py** python script.  All features were generated via SQL queries using the python librairy MySQLdb which can access the MySQL database.  The features were then saved in a numpy array file.
 
-The model is then trained and tested in training.py.  In this python code, the customers are first sorted with respect of the offer date so that the cross-validation respects the time structure of this problem.  Then the features are scaled and each sample is weighted with respect to the number of repeat trips the customer did.  After this preprocessing step a random-forest classifier is trained and cross-validated with the ROC AUC score.  Finally we predict the probability of repeat trips for each customer of the test set and we make a csv file which can be submitted to Kaggle.  
+The model is then trained and tested in **training.py**.  In this python code, the customers are first sorted with respect of the offer date so that the cross-validation respects the time structure of this problem.  Then the features are scaled and each sample is weighted with respect to the number of repeat trips the customer did.  After this preprocessing step a random-forest classifier is trained and cross-validated with the ROC AUC score.  Finally we predict the probability of repeat trips for each customer of the test set and we make a csv file which can be submitted to Kaggle.  
